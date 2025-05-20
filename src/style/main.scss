@@ -1,6 +1,12 @@
 // abstracts
-@use 'abstracts/variables';
-@use 'abstracts/mixins';
-@use 'abstracts/functions';
+@use "abstracts/variables";
+@use "abstracts/mixins";
+@use "abstracts/functions";
 
-@use 'components/nav'
+// base
+@use "base/reset.scss";
+@use "base/global.scss";
+
+@use "components/nav";
+@use "components/home";
+@use "components/skills";
