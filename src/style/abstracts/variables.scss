@@ -1,0 +1,28 @@
+@use "functions";
+
+
+
+$tiny: 0.625rem;
+$small: 0.75rem;
+$regular: 0.8rem;
+$large: 1rem;
+$xlarge: 1.125rem;
+$xxlarge: 1.5rem;
+$xxxlarge: 2rem;
+
+$thin-weight: 300;
+$regular-weight: 400;
+$medium-weight: 500;
+$bold-weight: 600;
+
+// $box-shadow-light: 0px 2px 4px $shadow-color;
+// $box-shadow-medium: 0px 4px 8px $shadow-color;
+// $box-shadow-heavy: 0px 8px 16px $shadow-color;
+
+$border-radius-small: 4px;
+$border-radius-medium: 6px;
+$border-radius-large: 12px;
+$border-radius-circle: 50%;
+$border-radius-xlarge: 16px;
+$border-radius-extra-large: 20px;
+$border-radius-xxx: 30px;

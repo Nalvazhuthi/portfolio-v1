@@ -1,0 +1,182 @@
+@use "../abstracts/variables" as *;
+
+[data-theme="light"] {
+  // text colors
+  --text-color: #{$text-color};
+  --text-disabled: #{$text-disabled};
+  --text-button-color: #{$text-button-color};
+  --input-text-color: #{$input-text-color};
+  --highlight-text-color: #{$highlight-text-color};
+
+  // background colors
+  --background-color: #{$background-color};
+  --background-color-solid: #{$background-color-solid};
+  --background-color-solid-gradient: #{$background-color-solid-gradient};
+  --background-color-secondary: #{$background-color-secondary};
+  --background-color-accent: #{$background-color-accent};
+  --background-color-button: #{$background-color-button};
+  --background-color-drop-down: #{$background-color-drop-down};
+  --background-color-input: #{$background-color-input};
+  --background-color-input-focus: #{$background-color-input-focus};
+  --background-color-drop-down-gradient: #{$background-color-drop-down-gradient};
+  --background-color-selected: #{$background-color-selected};
+  --background-radial-gray-gradient: #{$background-radial-gray-gradient};
+
+  // border colors
+  --border-color: #{$border-color};
+  --input-border-color: #{$input-border-color};
+  --border-color-accent: #{$border-color-accent};
+
+  // highlight colors
+  --highlight-accent-color: #{$highlight-accent-color};
+  --highlight-secondary-color: #{$highlight-secondary-color};
+
+  // icon colors
+  --icon-default-color: #{$icon-default-color};
+  --icon-default-color-active: #{$icon-default-color-active};
+
+  // log colors
+  --default-text-color: #{$log-default-text-color};
+  --log-info-text-color: #{$log-info-text-color};
+  --log-warn-text-color: #{$log-warn-text-color};
+  --log-error-text-color: #{$log-error-text-color};
+  --log-success-text-color: #{$log-success-text-color};
+  --log-default-background-color: #{$log-default-backgroung-color};
+  --log-info-background-color: #{$log-info-background-color};
+  --log-warn-background-color: #{$log-warn-background-color};
+  --log-error-background-color: #{$log-error-background-color};
+  --log-success-background-color: #{$log-success-background-color};
+
+  // old colors
+  --accent-color: #{$accent-color};
+  --accent-gradient-color: #{$acent-gradient};
+  --faint-gradient-color: #{$faint-gradient};
+  --background-color-gray: #{$background-color-gray};
+  --shadow-main-light: #{$shadow-color};
+  --box-shadow-light: 0px 2px 4px var(--shadow-main-light);
+  --box-shadow-medium: 0px 4px 8px var(--shadow-main-light);
+  --box-shadow-heavy: 0px 8px 16px var(--shadow-main-light);
+  --font-inter: #{$font-inter};
+  --font-josefin-sans: #{$font-josefin-sans};
+  --font-poppins: #{$font-poppins};
+  --font-roboto: #{$font-roboto};
+}
+
+[data-theme="dark"] {
+  // text colors
+  --text-color: #{$text-color-dark};
+  --text-disabled: #{$text-disabled-dark};
+  --text-button-color: #{$text-button-color-dark};
+  --input-text-color: #{$input-text-color-dark};
+  --highlight-text-color: #{$highlight-text-color-dark};
+
+  // background colors
+  --background-color: #{$background-color-dark};
+  --background-color-solid-gradient: #{$background-color-solid-gradient-dark};
+  --background-color-solid: #{$background-color-solid-dark};
+  --background-color-secondary: #{$background-color-secondary-dark};
+  --background-color-accent: #{$background-color-accent-dark};
+  --background-color-button: #{$background-color-button-dark};
+  --background-color-drop-down: #{$background-color-drop-down-dark};
+  --background-color-input: #{$background-color-input-dark};
+  --background-color-input-focus: #{$background-color-input-focus-dark};
+  --background-color-drop-down-gradient: #{$background-color-drop-down-gradient-dark};
+  --background-color-selected: #{$background-color-selected-dark};
+  --background-radial-gray-gradient: #{$background-radial-gray-gradient-dark};
+
+  // border colors
+  --border-color: #{$border-color-dark};
+  --input-border-color: #{$input-border-color-dark};
+  --border-color-accent: #{$border-color-accent-dark};
+
+  // highlight colors
+  --highlight-accent-color: #{$highlight-accent-color-dark};
+  --highlight-secondary-color: #{$highlight-secondary-color-dark};
+
+  // icon colors
+  --icon-default-color: #{$icon-default-color-dark};
+  --icon-default-color-active: #{$icon-default-color-active-dark};
+
+  // log colors
+  --default-text-color: #{$log-default-text-color-dark};
+  --log-info-text-color: #{$log-info-text-color-dark};
+  --log-warn-text-color: #{$log-warn-text-color-dark};
+  --log-error-text-color: #{$log-error-text-color-dark};
+  --log-success-text-color: #{$log-success-text-color-dark};
+  --log-default-background-color: #{$log-default-backgroung-color};
+  --log-info-background-color: #{$log-info-background-color};
+  --log-warn-background-color: #{$log-warn-background-color};
+  --log-error-background-color: #{$log-error-background-color};
+  --log-success-background-color: #{$log-success-background-color};
+
+  // old colors
+  --accent-color: #{$accent-color-dark};
+  --accent-gradient-color: #{$acent-gradient-dark};
+  --faint-gradient-color: #{$faint-gradient-dark};
+  --background-color-gray: #{$background-color-gray-dark};
+  --shadow-main-dark: #{$shadow-color};
+  --box-shadow-light: 0px 2px 4px var(--shadow-main-dark);
+  --box-shadow-medium: 0px 4px 8px var(--shadow-main-dark);
+  --box-shadow-heavy: 0px 8px 16px var(--shadow-main-dark);
+  --font-inter: #{$font-inter};
+  --font-josefin-sans: #{$font-josefin-sans};
+  --font-poppins: #{$font-poppins};
+  --font-roboto: #{$font-roboto};
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: var(--background-color-gray);
+}
+
+#root-over {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
+body {
+  --font-size-tiny: #{$tiny};
+  --font-size-small: #{$small};
+  --font-size-regular: #{$regular};
+  --font-size-large: #{$large};
+  --font-size-xlarge: #{$xlarge};
+  --font-size-xxlarge: #{$xxlarge};
+  --font-size-xxxlarge: #{$xxxlarge};
+  --font-weight-regular: #{$regular-weight};
+  --font-weight-medium: #{$medium-weight};
+  --font-weight-bold: #{$bold-weight};
+
+  // colors
+  --color1: #{$color1};
+  --color2: #{$color2};
+  --color3: #{$color3};
+  --color4: #{$color4};
+  --color5: #{$color5};
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: #{$border-radius-small};
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--background-color-button);
+  border-radius: #{$border-radius-small};
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--background-color-button);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
