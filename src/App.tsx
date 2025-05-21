@@ -1,14 +1,12 @@
-import "./style/main.scss";
+import Hero from "./components/hero";
 import Nav from "./components/nav";
-import Home from "./components/home";
-import Skills from "./components/skills";
+import "./style/main.scss";
 
 const App = () => {
   return (
     <div className="content-container">
-      {/* <Nav /> */}
-      <Home />
-      <Skills />
+      <Nav />
+      <Hero />
     </div>
   );
 };

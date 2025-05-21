@@ -1,0 +1,345 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts//mixins.scss" as *;
+
+.nav-bar-wrapper {
+  position: relative;
+  z-index: 100;
+  background-color: $primary-color;
+}
+
+.nav-bar {
+  width: 100%;
+  height: 70px;
+  color: $primary-color;
+  @include flex-space-between;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  .logo,
+  .logo-name {
+    font-weight: bold;
+    color: $secondary-color;
+  }
+
+  .hamburger {
+    height: 25px;
+    @include flex-center;
+    flex-direction: column;
+    gap: 10px;
+    cursor: pointer;
+
+    .line {
+      width: 40px;
+      height: 3px;
+      background-color: $secondary-color;
+      transition: all 0.2s linear 0.3s;
+    }
+
+    &.active {
+      .line:first-child {
+        transform: rotate(-45deg) translate(-4px, 4px);
+      }
+
+      .line:nth-child(2) {
+        transform: rotate(45deg) translate(-4px, -4px);
+      }
+    }
+  }
+}
+
+.nav-options-wrapper {
+  position: fixed;
+  top: -100vh;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $secondary-80;
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(12px);
+
+  @include flex-center;
+
+  z-index: 2;
+  transition: top 0.5s ease-in-out 0.3s;
+  padding-top: 70px;
+  .nav-options-container {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 0px);
+    overflow: auto;
+    @include flex-space-between;
+    padding: 8vw 5vw;
+    padding-top: 4.5vw;
+    padding-bottom: 120px;
+    .navigation-container {
+      width: 100%;
+      height: 100%;
+
+      @include flex-space-between;
+      gap: 4rem;
+
+      .nav-options {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 2rem;
+
+        .options {
+          font-size: 6vw;
+          font-weight: bold;
+          background: linear-gradient(to right, rgb(0, 0, 0) 50%, white 50%);
+          background-size: 200% 100%;
+          background-position: right;
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          transition: background-position 0.5s ease;
+          cursor: pointer;
+
+          &:hover {
+            background-position: left;
+          }
+        }
+      }
+
+      .nav-contact {
+        // width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: end;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 2rem;
+
+        .location {
+          width: auto;
+          text-align: right;
+          color: $primary-color;
+          font-size: $xlarge;
+          cursor: pointer; /* Optional: makes it clear it's interactive */
+          transition: all 0.3s ease; /* Smooth transition for all properties */
+          span {
+            display: inline-block; /* Necessary for transform to work */
+            transition: all 0.3s ease; /* Smooth transition for span */
+          }
+          &:hover {
+            span {
+              font-size: large;
+              transform: rotate(-10deg);
+            }
+          }
+        }
+        .content {
+          margin: 0;
+        }
+        .contact {
+          width: 100%;
+          .content {
+            color: $primary-color;
+            font-size: $large;
+          }
+
+          .email {
+            color: $primary-color;
+            font-size: $xxxlarge;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    .socialLinks {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background-color: $secondary-color;
+
+      @include flex-center;
+      gap: 2rem;
+
+      .social {
+        color: $primary-color;
+        font-size: $regular;
+        cursor: pointer;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: $secondary-color;
+        }
+      }
+    }
+  }
+}
+.nav-options-wrapper.active {
+  top: 0;
+}
+@media (max-width: 1024px) {
+  .nav-options-wrapper .nav-options-container {
+    height: calc(100% - 150px);
+    flex-direction: column;
+    justify-content: flex-start;
+    // padding: 150px 20px 20px;
+
+    .navigation-container {
+      flex-direction: column;
+      align-items: center;
+      gap: 6rem;
+
+      .nav-options {
+        align-items: center;
+
+        .options {
+          font-size: 10vw;
+        }
+      }
+
+      .nav-contact {
+        width: 100%;
+        justify-content: flex-end;
+        align-items: center;
+        text-align: center;
+
+        .location {
+          font-size: $large;
+        }
+
+        .contact {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          .content {
+            font-size: $large;
+          }
+
+          .email {
+            font-size: $xxlarge;
+          }
+        }
+      }
+    }
+
+    // .socialLinks {
+    //   flex-wrap: wrap;
+    //   gap: 1rem;
+    //   height: auto;
+    //   padding: 20px 0;
+
+    //   .social {
+    //     font-size: $small;
+    //   }
+    // }
+
+   
+    
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-bar {
+    padding: 0 10px;
+    .logo-name {
+      font-size: $regular;
+    }
+
+    .hamburger .line {
+      width: 30px;
+    }
+  }
+  .contact {
+    gap: 6px;
+  }
+  .nav-options-wrapper .nav-options-container {
+    .navigation-container {
+      .nav-options .options {
+        font-size: 12vw;
+      }
+
+      .nav-contact .email {
+        font-size: $large;
+      }
+    }
+  }
+}
+
+.nav-bar-wrapper {
+  position: relative;
+  z-index: 10;
+}
+
+.intro-container {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(248, 245, 245, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: height 1s linear;
+}
+.animated {
+  height: 70px;
+  background-color: transparent;
+  z-index: -1;
+  .logo-Name {
+    span {
+      transition: all 1s linear;
+      font-size: $xlarge;
+    }
+  }
+}
+.message {
+  display: flex;
+  overflow: hidden;
+  gap: 0.1em;
+
+  span {
+    display: inline-block;
+    font-size: 12vw;
+    font-weight: bolder;
+    color: black;
+    opacity: 0;
+    overflow: hidden;
+  }
+  span.intro,
+  span.logo {
+    opacity: 1;
+    transform: translateY(-100%);
+    animation: dropIn 0.5s ease-out forwards;
+  }
+  span.stay {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  span.dropOut {
+    opacity: 1;
+    transform: translateY(0%);
+    animation: dropOut 0.5s ease-in forwards;
+  }
+  span.last {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes dropIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dropOut {
+  to {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}

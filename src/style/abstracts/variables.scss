@@ -1,6 +1,10 @@
 @use "functions";
 
+$primary-color: #ffffff;
+$secondary-color: #070f18;
 
+$primary-80: rgba(255, 255, 255, 0.7); // Light transparent white
+$secondary-80: rgba(0, 0, 0, 0.7);
 
 $tiny: 0.625rem;
 $small: 0.75rem;
