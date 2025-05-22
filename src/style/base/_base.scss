@@ -1,6 +1,6 @@
 @use "../abstracts/variables" as *;
 
---font-inter: Inter, sans-serif;
+
 [data-theme="light"] {
   // text colors
   --text-color: #{$text-color};

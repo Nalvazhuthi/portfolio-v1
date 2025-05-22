@@ -3,12 +3,15 @@
   padding: 0;
   box-sizing: border-box;
   user-select: none;
-  font-size: var(--font-size-regular);
+
 }
 
-input[type="password"]::-ms-reveal, /* For Microsoft Edge */
-input[type="password"]::-ms-clear,   /* For Edge clear button */
-input[type="password"]::-webkit-clear-button, /* For Chrome/Safari clear button */
+input[type="password"]::-ms-reveal,
+/* For Microsoft Edge */
+input[type="password"]::-ms-clear,
+/* For Edge clear button */
+input[type="password"]::-webkit-clear-button,
+/* For Chrome/Safari clear button */
 input[type="password"]::-webkit-inner-spin-button {
   /* Just in case */
   display: none;

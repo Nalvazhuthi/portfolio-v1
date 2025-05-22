@@ -1,9 +1,25 @@
-import React from 'react'
 
-const exportSVG = () => {
+export const LinkedinIcon = () => {
   return (
     <div>exportSVG</div>
   )
 }
 
-export default exportSVG
+export const InstagramIcon = () => {
+  return (
+    <div>exportSVG</div>
+  )
+}
+
+export const TwitterIcon = () => {
+  return (
+    <div>exportSVG</div>
+  )
+}
+
+export const BlueSkyIcon = () => {
+  return (
+    <div>exportSVG</div>
+  )
+}
+
