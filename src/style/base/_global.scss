@@ -22,7 +22,9 @@
 }
 
 .section {
+
   scroll-snap-align: start;
-  height: 100vh;
+  // height: calc(100vh - 70px);
   width: 100%;
+  padding-top: 70px;
 }
