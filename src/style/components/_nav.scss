@@ -4,7 +4,6 @@
 .nav-bar-wrapper {
   position: relative;
   z-index: 100;
-  background-color: $primary-color;
 }
 
 .nav-bar {
@@ -17,6 +16,8 @@
   top: 0;
   z-index: 10;
 
+  // background-color: $primary-80;
+  //     backdrop-filter: blur(8px);
   .logo,
   .logo-name {
     font-weight: bold;

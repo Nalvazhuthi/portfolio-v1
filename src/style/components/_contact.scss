@@ -2,157 +2,154 @@
 @use "../abstracts/mixins.scss" as *;
 
 .contact-container {
-    height: calc(100% - 70px);
-    margin-top: 70px;
-    background-color: $secondary-80;
-    border-radius: 100px 100px 0 0;
-    padding: 50px;
+  height: calc(100% - 70px);
+  margin-top: 70px;
+  background-color: $secondary-80;
+  border-radius: 100px 100px 0 0;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  animation: appear 5s linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+
+  .contact-hero {
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+    white-space: nowrap;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+
+    span {
+      display: inline-block;
+      font-weight: bolder;
+      font-size: 8vw;
+    }
+  }
+
+  .contact-list {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 100px;
 
-    animation: appear 5s linear;
-    animation-timeline: view();
-    animation-range: entry 0% cover 40%;
-
-    .contact-hero {
-        width: 100%;
-        display: flex;
-        gap: 2rem;
-        white-space: nowrap;
-        overflow-x: hidden;
-        scroll-behavior: smooth;
-
-        span {
-            display: inline-block;
-            font-weight: bolder;
-            font-size: 8vw;
-        }
+    .message {
+      width: 100%;
+      text-align: center;
+      font-size: 3vw;
+      @include flex-center;
+      color: gray;
     }
 
+    .input-container {
+      width: 90%;
+      height: 150px;
+      border: 1px solid $primary-color;
+      border-radius: 100px;
+      overflow: hidden;
+      position: relative;
 
-    .contact-list {
+      input {
+        border: none;
+        outline: none;
+        background: transparent;
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 1.5rem;
-        margin-bottom: 100px;
+        height: 100%;
+        font-size: 3rem;
+        padding-left: 1rem;
+        padding-right: 32%;
+      }
 
-        .message {
-            width: 100%;
-            text-align: center;
-            font-size: 3vw;
-            @include flex-center;
-            color: gray;
+      .send-email-button {
+        position: absolute;
+        right: 0;
+        height: 100%;
+        width: 30%;
+        border-radius: 100px;
+        font-size: 3vw;
+        color: $primary-color;
+        overflow: hidden; // Ensures the pseudo-element stays within bounds
+        background: transparent;
+        transition: color 0.3s ease; // Optional: for text color transition
+        z-index: 1;
+        background-color: $secondary-80;
+        cursor: pointer;
+
+        &::after {
+          content: "";
+          position: absolute;
+          left: -100%;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: $primary-80;
+          transition: left 0.3s ease;
+          z-index: -1;
+          border-radius: 100px;
         }
 
-        .input-container {
-            width: 90%;
-            height: 150px;
-            border: 1px solid $primary-color;
-            border-radius: 100px;
-            overflow: hidden;
-            position: relative;
+        &:hover {
+          color: $secondary-80; // Change text color on hover for better contrast
 
-            input {
-                border: none;
-                outline: none;
-                background: transparent;
-                width: 100%;
-                height: 100%;
-                font-size: 3rem;
-                padding-left: 1rem;
-                padding-right: 32%;
-            }
-
-            .send-email-button {
-                position: absolute;
-                right: 0;
-                height: 100%;
-                width: 30%;
-                border-radius: 100px;
-                font-size: 3rem;
-                color: $primary-color;
-                overflow: hidden; // Ensures the pseudo-element stays within bounds
-                background: transparent;
-                transition: color 0.3s ease; // Optional: for text color transition
-                z-index: 1;
-                background-color: $secondary-80;
-                cursor: pointer;
-
-                &::after {
-                    content: "";
-                    position: absolute;
-                    left: -100%;
-                    top: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-color: $primary-80;
-                    transition: left 0.3s ease;
-                    z-index: -1;
-                    border-radius: 100px;
-                }
-
-                &:hover {
-                    color: $secondary-80; // Change text color on hover for better contrast
-
-                    &::after {
-                        left: 0;
-                    }
-                }
-            }
+          &::after {
+            left: 0;
+          }
         }
+      }
     }
-
+  }
 }
 
-
 @keyframes appear {
-    from {
-        opacity: 0;
-        scale: 0.4;
-    }
+  from {
+    opacity: 0;
+    scale: 0.4;
+  }
 
-    to {
-        opacity: 1;
-        scale: 1;
-    }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
 }
 
 
 @media (max-width: 600px) {
-    .contact-container {
-        padding: 50px 0 !important;
+  .contact-container {
+    padding: 50px 0 !important;
 
-        border-radius: 60px 60px 0 0;
+    border-radius: 60px 60px 0 0;
 
-        .contact-list {
-            margin-bottom: 250px !important;
+    .contact-list {
+      margin-bottom: 250px !important;
 
-            .message {
-                font-size: 6vw;
-            }
-        }
+      .message {
+        font-size: 6vw;
+      }
+    }
+  }
+
+  .input-container {
+    height: 70px !important;
+    width: 100% !important;
+
+    input,
+    .send-email-button {
+      font-size: 1rem !important;
     }
 
-    .input-container {
-        height: 70px !important;
-        width: 100% !important;
-
-        input,
-        .send-email-button {
-            font-size: 1rem !important;
-        }
-
-        input {
-            padding-right: 42% !important;
-        }
-
-        .send-email-button {
-            font-size: 0.8rem !important;
-            width: 40% !important;
-        }
+    input {
+      padding-right: 42% !important;
     }
+
+    .send-email-button {
+      font-size: 0.8rem !important;
+      width: 40% !important;
+    }
+  }
 }
