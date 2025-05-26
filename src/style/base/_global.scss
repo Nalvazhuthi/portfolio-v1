@@ -17,12 +17,12 @@
 .content-container {
   // scroll-snap-type: y mandatory;
   overflow-y: auto;
-  height: 100vh;
+  height: auto;
   scroll-behavior: smooth;
 }
 
 .section {
-
+  background-color: $primary-80;
   scroll-snap-align: start;
   // height: calc(100vh - 70px);
   width: 100%;

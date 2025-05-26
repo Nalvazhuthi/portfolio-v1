@@ -2,7 +2,7 @@
 @use "../abstracts/mixins.scss" as *;
 
 .contact-container {
-  height: calc(100% - 70px);
+  height: calc(100vh - 70px);
   margin-top: 70px;
   background-color: $secondary-80;
   border-radius: 100px 100px 0 0;
@@ -11,9 +11,9 @@
   flex-direction: column;
   justify-content: space-between;
 
-  animation: appear 5s linear;
-  animation-timeline: view();
-  animation-range: entry 0% cover 40%;
+  // animation: appear 5s linear;
+  // animation-timeline: view();
+  // animation-range: entry 0% cover 40%;
 
   .contact-hero {
     width: 100%;
@@ -152,4 +152,17 @@
       width: 40% !important;
     }
   }
+}
+
+@media (max-width: 480px) {
+
+  .contact-container {
+    margin-top: 20px;
+
+    .contact-list {
+      // margin-bottom: 150px !important;
+
+    }
+  }
+
 }

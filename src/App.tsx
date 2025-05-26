@@ -2,6 +2,7 @@ import About from "./components/about";
 import Contact from "./components/contact";
 import Hero from "./components/hero";
 import Nav from "./components/nav";
+import Skills from "./components/skills";
 import Works from "./components/works";
 import "./style/main.scss";
 
@@ -11,6 +12,7 @@ const App = () => {
       {/* <Nav /> */}
       <Hero />
       <About />
+      <Skills />
       <Works />
       <Contact />
     </div>

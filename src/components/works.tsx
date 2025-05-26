@@ -1,133 +1,125 @@
-import { useRef, useEffect, useState, useCallback } from "react";
+// Works.tsx
+import { useState, useRef, useEffect } from "react";
 import { ArrowIcons } from "../assets/svg/exportSVG";
 
 const Works = () => {
-  const works = [
-    {
-      title: "English Learning Agent Website",
-      description:
-        "A modern web platform to help users improve their English skills using AI-powered agents.",
-      image: "english-learning.jpg",
-    },
-    {
-      title: "Vet Clinic Website",
-      description:
-        "A responsive website designed for veterinary clinics to manage appointments and showcase services.",
-      image: "vet-clinic.jpg",
-    },
-    {
-      title: "Beauty and Skincare Landing Page",
-      description:
-        "An elegant landing page for a beauty brand, optimized for conversions and product showcase.",
-      image: "beauty-skincare.jpg",
-    },
-  ];
-
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [isOverflowing, setIsOverflowing] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const [wobble, setWobble] = useState({ x: 0, y: 0 });
+  const lastPosRef = useRef({ x: 0, y: 0, time: Date.now() });
   const [cursorVisibility, setCursorVisibility] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-
-  const updateOverflowState = useCallback(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    const isOverflow = container.scrollWidth > container.clientWidth;
-    setIsOverflowing(isOverflow);
-  }, []);
-
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    // Initial calculation after the DOM has been rendered
-    const observer = new ResizeObserver(updateOverflowState);
-    observer.observe(container);
-
-    // Update on scroll
-    const handleScroll = () => updateOverflowState();
-    container.addEventListener("scroll", handleScroll);
-
-    // Add mouse wheel listener for horizontal scrolling
-    const handleWheel = (event: WheelEvent) => {
-      if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
-        event.preventDefault();
-        container.scrollBy({
-          left: event.deltaY * 2,
-          behavior: "smooth",
-        });
-      }
-    };
-
-    container.addEventListener("wheel", handleWheel, { passive: false });
-
-    // Initial check
-    updateOverflowState();
-
-    return () => {
-      observer.disconnect();
-      container.removeEventListener("scroll", handleScroll);
-      container.removeEventListener("wheel", handleWheel);
-    };
-  }, [updateOverflowState]);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // Mouse move effect for custom cursor
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
+      setCursorVisibility(
+        containerRef.current?.contains(e.target as Node) ?? false
+      );
     };
 
-    if (cursorVisibility) {
-      window.addEventListener("mousemove", handleMouseMove);
-    }
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, [cursorVisibility]);
+  const works = [
+    {
+      title: "English Learning Agent Website",
+      image: "english-learning.jpg",
+    },
+    {
+      title: "Vet Clinic Website",
+      image: "vet-clinic.jpg",
+    },
+    {
+      title: "The Creator | Creative Agency",
+      image: "creative-agency.jpg",
+    },
+    {
+      title: "Beauty and Skincare Landing Page",
+      image: "beauty-skincare.jpg",
+    },
+  ];
+
+  const handleMouseMove = (e: React.MouseEvent, index: number) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const now = Date.now();
+
+    const deltaX = x - lastPosRef.current.x;
+    const deltaY = y - lastPosRef.current.y;
+    const deltaTime = now - lastPosRef.current.time;
+
+    const speedX = deltaX / deltaTime;
+    const speedY = deltaY / deltaTime;
+
+    const maxWobble = 15;
+    setWobble({
+      x: Math.max(Math.min(speedX * 100, maxWobble), -maxWobble),
+      y: Math.max(Math.min(speedY * 100, maxWobble), -maxWobble),
+    });
+
+    setCursorPosition({ x, y });
+    setHoveredIndex(index);
+    lastPosRef.current = { x, y, time: now };
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredIndex(null);
+    setWobble({ x: 0, y: 0 });
+  };
 
   return (
-    <div
-      className="works-container section"
-      id="works"
-      onPointerEnter={() => setCursorVisibility(true)}
-      onPointerLeave={() => setCursorVisibility(false)}
-    >
-      <div className="work-hero">My Playground</div>
-      <div
-        className={`works-container-wrapper ${
-          isOverflowing ? "overflowing" : ""
-        }`}
-        ref={scrollContainerRef}
-      >
-        {works.map((work, index) => (
-          <div className="works-wrapper" key={`${index}_${work.title}`}>
-            <div className="title">{work.title}</div>
-            <div className="description">{work.description}</div>
-            <div className="images">
-              <img src={work.image} alt={work.title} />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {cursorVisibility && (
+    <div className="works-container section" id="works" ref={containerRef}>
+      {works.map((work, index) => (
         <div
-          className="custom-cursor"
-          style={{
-            position: "fixed",
-            left: `${position.x}px`,
-            top: `${position.y}px`,
-            transform: "translate(-50%, -50%)",
-            pointerEvents: "none",
-            zIndex: 9999,
-          }}
+          className="work-item"
+          key={`${index}-${work.title}`}
+          onMouseMove={(e) => handleMouseMove(e, index)}
+          onMouseLeave={handleMouseLeave}
         >
-          <div className="arrow-icon">
-            <ArrowIcons />
+          <div className="title">
+            <span className="index">#{index + 1}</span> {work.title}
           </div>
+          {hoveredIndex === index && (
+            <div
+              className="image-wrapper"
+              style={{
+                left: `${cursorPosition.x}px`,
+                top: `${cursorPosition.y}px`,
+                transform: `translate(-50%, -50%) rotateX(${wobble.y}deg) rotateY(${wobble.x}deg)`,
+              }}
+            >
+              <img
+                src={`/images/${work.image}`}
+                alt={work.title}
+                loading="lazy"
+              />
+            </div>
+          )}
         </div>
-      )}
+      ))}
+
+      <div
+        className="custom-cursor"
+        style={{
+          position: "fixed",
+          left: `${position.x}px`,
+          top: `${position.y}px`,
+          transform: "translate(-50%, -50%)",
+          pointerEvents: "none",
+          zIndex: 9999,
+          opacity: cursorVisibility ? 1 : 0,
+          transition: "opacity 0.2s ease, transform 0.1s ease-out",
+        }}
+      >
+        <div className="arrow-icon">
+          <ArrowIcons />
+        </div>
+      </div>
     </div>
   );
 };
