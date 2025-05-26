@@ -1,5 +1,4 @@
-import avatar from "../assets/images/Avatar.png";
-
+import avatar from "../assets/images/heroAvatar.png";
 const Hero = () => {
   return (
     <div className="hero-container section" id="home">
@@ -7,7 +6,7 @@ const Hero = () => {
         <div className="content">
           Hello
           <span className="img-wrapper">
-            <img src={avatar} alt="avatar"/>
+            <img src={avatar} alt="avatar" />
           </span>
           <span className="name-wrapper">I'm Nalvazhuthi</span>
         </div>
