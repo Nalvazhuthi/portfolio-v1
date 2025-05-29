@@ -1,6 +1,7 @@
 // Works.tsx
 import { useState, useRef, useEffect } from "react";
 import { ArrowIcons } from "../assets/svg/exportSVG";
+import theCreator from "../assets/works/theCreator.png";
 
 const Works = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -11,7 +12,7 @@ const Works = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Mouse move effect for custom cursor
+  // Track global cursor position for custom cursor
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
@@ -35,7 +36,7 @@ const Works = () => {
     },
     {
       title: "The Creator | Creative Agency",
-      image: "creative-agency.jpg",
+      image: theCreator,
     },
     {
       title: "Beauty and Skincare Landing Page",
@@ -88,16 +89,20 @@ const Works = () => {
             <div
               className="image-wrapper"
               style={{
+                position: "absolute",
                 left: `${cursorPosition.x}px`,
                 top: `${cursorPosition.y}px`,
-                transform: `translate(-50%, -50%) rotateX(${wobble.y}deg) rotateY(${wobble.x}deg)`,
+                transform: `translate(-50%, -50%) rotateX(${
+                  wobble.y
+                }deg) rotateY(${wobble.x}deg) scale(1.05) skew(${
+                  wobble.x * 0.3
+                }deg, ${wobble.y * 0.3}deg)`,
+                transition: "transform 0.1s ease, filter 0.1s ease",
+                pointerEvents: "none",
+                zIndex: 1000,
               }}
             >
-              <img
-                src={`/images/${work.image}`}
-                alt={work.title}
-                loading="lazy"
-              />
+              <img src={work.image} alt={work.title} loading="lazy" />
             </div>
           )}
         </div>
