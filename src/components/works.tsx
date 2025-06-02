@@ -1,7 +1,10 @@
 // Works.tsx
 import { useState, useRef, useEffect } from "react";
 import { ArrowIcons } from "../assets/svg/exportSVG";
+import beauty from "../assets/works/beauty.png";
 import theCreator from "../assets/works/theCreator.png";
+import petClinic from "../assets/works/petClinic.png";
+import englishLearning from "../assets/works/englisgLearning.png";
 
 const Works = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -28,11 +31,11 @@ const Works = () => {
   const works = [
     {
       title: "English Learning Agent Website",
-      image: "english-learning.jpg",
+      image: englishLearning,
     },
     {
       title: "Vet Clinic Website",
-      image: "vet-clinic.jpg",
+      image: petClinic,
     },
     {
       title: "The Creator | Creative Agency",
@@ -40,7 +43,7 @@ const Works = () => {
     },
     {
       title: "Beauty and Skincare Landing Page",
-      image: "beauty-skincare.jpg",
+      image: beauty,
     },
   ];
 
@@ -92,11 +95,7 @@ const Works = () => {
                 position: "absolute",
                 left: `${cursorPosition.x}px`,
                 top: `${cursorPosition.y}px`,
-                transform: `translate(-50%, -50%) rotateX(${
-                  wobble.y
-                }deg) rotateY(${wobble.x}deg) scale(1.05) skew(${
-                  wobble.x * 0.3
-                }deg, ${wobble.y * 0.3}deg)`,
+                transform: `translate(-50%, -50%) `,
                 transition: "transform 0.1s ease, filter 0.1s ease",
                 pointerEvents: "none",
                 zIndex: 1000,
